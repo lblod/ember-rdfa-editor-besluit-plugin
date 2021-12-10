@@ -5,8 +5,14 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
+    sassOptions: {
+      sourceMapEmbed: true,
+      includePaths: [
+        'node_modules/@appuniversum/appuniversum',
+        'node_modules/@appuniversum/ember-appuniversum/app/styles',
+      ],
+    },
   });
-
   /*
     This build file specifies the options for the dummy test app of this
     addon, located in `/tests/dummy`
