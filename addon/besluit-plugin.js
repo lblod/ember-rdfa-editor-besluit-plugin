@@ -1,3 +1,4 @@
+import InsertArticleCommand from './commands/insert-article-command';
 /**
  * Entry point for BesluitPlugin
  *
@@ -30,6 +31,9 @@ export default class BesluitPlugin {
   initialize(controller) {
     console.log('initializing')
     this.controller = controller;
+    controller.registerCommand(
+      new InsertArticleCommand(controller._rawEditor._model)
+    );
     controller.registerWidget({
       componentName: 'besluit-plugin-card',
       identifier: 'besluit-plugin/card',
