@@ -29,7 +29,6 @@ export default class BesluitPlugin {
   }
 
   initialize(controller) {
-    console.log('initializing')
     this.controller = controller;
     controller.registerCommand(
       new InsertArticleCommand(controller._rawEditor._model)

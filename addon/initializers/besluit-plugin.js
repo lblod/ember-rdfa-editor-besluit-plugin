@@ -11,7 +11,6 @@ function pluginFactory(plugin) {
 }
 
 export function initialize(application) {
-  console.log('initializing')
   application.register('plugin:besluit', pluginFactory(BesluitPlugin), {
     singleton: false,
   });
