@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { v4 as uuid } from 'uuid';
 
 export default class EditorPluginsTemplateVariableCardComponent extends Component {
   @tracked showCard = false;
