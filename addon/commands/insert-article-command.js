@@ -59,7 +59,9 @@ export default class InsertArticleCommand {
   }
   generateArticleNumber(controller) {
     const numberQuads = [
-      ...controller.datastore.match(null, '>http://data.europa.eu/eli/ontology#number', null).asQuads(),
+      ...controller.datastore
+        .match(null, '>http://data.europa.eu/eli/ontology#number', null)
+        .asQuads(),
     ];
     let biggerNumber;
     for (let numberQuad of numberQuads) {
