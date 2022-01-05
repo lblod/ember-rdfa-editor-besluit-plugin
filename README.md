@@ -1,7 +1,7 @@
-ember-rdfa-editor-besluit-plugin
-==============================================================================
+# ember-rdfa-editor-besluit-plugin
 
-[Short description of the addon.]
+
+Plugin that provides some helpers for interacting with besluit inside GN
 
 
 Compatibility
@@ -20,19 +20,21 @@ ember install ember-rdfa-editor-besluit-plugin
 ```
 
 
-Usage
-------------------------------------------------------------------------------
+## Usage
 
-[Longer description of how to use the addon in apps.]
+### Comands 
+
+#### Insert article command
+This command allows the user to insert a new article
+
+This command has 2 optional arguments:
+ - content: Allows you to specify the content of the new article inserted
+ - number: Allows you to specify the number of the new article inserted
+If the number of the article is not specified the command will try to generate it based on the previous article numbers, if there are no more articles or they don't have a number a placeholder will be inserted
+
+Example of complete command:
+`this.args.controller.executeCommand('insert-article', this.args.controller, 'Content of the article', 1);`
 
 
-Contributing
-------------------------------------------------------------------------------
-
-See the [Contributing](CONTRIBUTING.md) guide for details.
-
-
-License
-------------------------------------------------------------------------------
-
+## License
 This project is licensed under the [MIT License](LICENSE.md).
