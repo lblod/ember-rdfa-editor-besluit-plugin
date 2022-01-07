@@ -3,6 +3,21 @@
 
 Plugin that provides some helpers for interacting with besluit inside GN
 
+*Note*: this plugin uses the new plugin architecture. It needs to be passed to the editor for inititialization.
+
+```
+    <Rdfa::RdfaEditor
+      class="au-c-rdfa-editor"
+      @profile={{@profile}}
+      @rdfaEditorInit={{this.rdfaEditorInit}}
+      @editorOptions={{this.editorOptions}}
+      @toolbarOptions={{this.toolbarOptions}}
+      @plugins={{array 'besluit'}
+    />
+
+
+```
+
 
 Compatibility
 ------------------------------------------------------------------------------
