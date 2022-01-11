@@ -33,6 +33,7 @@ steps:
 - name: npm-release
   image: plugins/npm
   settings:
+    access: public
     token:
       from_secret: npm_access_token
 trigger:
