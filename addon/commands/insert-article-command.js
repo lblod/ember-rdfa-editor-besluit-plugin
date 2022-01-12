@@ -65,7 +65,7 @@ export default class InsertArticleCommand {
     ];
     let biggerNumber;
     for (let numberQuad of numberQuads) {
-      const number = Number(numberQuad.object.value);
+      const number = Number(this.removeZeroWidthSpace(numberQuad.object.value));
       if (!Number.isNaN(number) && (number > biggerNumber || !biggerNumber)) {
         biggerNumber = number;
       }
@@ -75,5 +75,8 @@ export default class InsertArticleCommand {
     } else {
       return '<span class="mark-highlight-manual">nummer</span>';
     }
+  }
+  removeZeroWidthSpace(text) {
+    return text.replace(/[\u200B-\u200D\uFEFF]/g, '');
   }
 }
