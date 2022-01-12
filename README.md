@@ -38,7 +38,7 @@ ember install @lblod/ember-rdfa-editor-besluit-plugin
 ## Usage
 The plugin card will trigger when the cursor is inside any html element with type `besluit:Besluit`
 
-## Comands 
+## Commands 
 
 ### Insert article command
 This command allows the user to insert a new article
