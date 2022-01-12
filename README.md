@@ -31,7 +31,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-rdfa-editor-besluit-plugin
+ember install @lblod/ember-rdfa-editor-besluit-plugin
 ```
 
 
