@@ -1,12 +1,12 @@
 {{#if this.showCard}}
-  <AuCard @flex={{true}} @divided={{true}} @expandable={{true}} @shadow={{true}} @size="small" as |c|>
+  <AuCard @flex={{true}} @divided={{true}} @expandable={{true}} @shadow={{true}} @isOpenInitially={{true}} @size="small" as |c|>
     <c.header>
       <AuHeading @level="3" @skin="6">
         Besluit
       </AuHeading>
     </c.header>
     <c.content>
-      <AuButton {{on 'click' this.insertArticle}}>Insert Article</AuButton>
+      <AuButton {{on 'click' this.insertArticle}}>Artikel toevoegen</AuButton>
     </c.content>
   </AuCard>
 {{/if}}
