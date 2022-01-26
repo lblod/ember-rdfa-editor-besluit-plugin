@@ -1,5 +1,27 @@
 {{page-title "besluit-plugin"}}
 
+<Rdfa::RdfaEditorWithDebug 
+  class="rdfa-playground"
+  @rdfaEditorInit={{this.rdfaEditorInit}}
+  @plugins={{this.plugins}}
+  @editorOptions={{hash    
+    showToggleRdfaAnnotations="true"
+    showInsertButton=null  
+    showRdfa="true" 
+    showRdfaHighlight="true"
+    showRdfaHover="true"   
+    showPaper="true"       
+    showSidebar="true"     
+    showToolbarBottom=null 
+  }}
+  @toolbarOptions={{hash   
+    showTextStyleButtons="true"
+    showListButtons="true" 
+    showIndentButtons="true"
+  }}> 
+  <h1>Dummy app - besluit-plugin</h1>
+</Rdfa::RdfaEditorWithDebug>
+{{!--
 <div class="c-dummy">
   <div class="c-dummy__header">
     <h1>Dummy app - besluit-plugin</h1>
@@ -61,3 +83,4 @@
     </div>
   </div>
 {{/if}}
+--}}
