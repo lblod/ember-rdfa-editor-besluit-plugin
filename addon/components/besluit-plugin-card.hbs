@@ -7,10 +7,10 @@
     </c.header>
     <c.content>
       {{#unless this.hasTitle}}
-        <br />
         <AuButton {{on 'click' this.insertTitle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
           Voeg titel in
         </AuButton>
+         <br />
       {{/unless}}
       <AuButton {{on "click" this.insertArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
         Voeg artikel in
