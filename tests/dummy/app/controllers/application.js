@@ -163,9 +163,6 @@ export default class ApplicationController extends Controller {
           <span class="mark-highlight-manual">Voer inhoud in</span>
         </div>
       </div>
-      <br>
-      <div class="mark-highlight-manual"><span data-editor-highlight="true">Voeg nieuw artikel in</span></div>
-      <br>
     </div>
    </div>`;
     this._editorController = controller;
