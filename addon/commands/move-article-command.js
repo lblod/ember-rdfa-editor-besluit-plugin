@@ -47,9 +47,11 @@ export default class InsertArticleCommand {
   }
   replaceArticles(controller, articleContainerElement, articles) {
     const range = controller.rangeFactory.fromInNode(
-      articleContainerElement, 0, articleContainerElement.getMaxOffset()
+      articleContainerElement, 
+      0, 
+      articleContainerElement.getMaxOffset()
     );
-    const articleHtml = articles.reduce((html, article) => html += article.boundNode.outerHTML, '');
+    const articleHtml = articles.reduce((html, article) => (html += article.boundNode.outerHTML), '');
     controller.executeCommand('insert-html', articleHtml, range);
   }
 }
