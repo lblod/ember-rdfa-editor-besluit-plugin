@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 export default class EditorPluginsTemplateVariableCardComponent extends Component {
   @tracked showCard = false;
   @tracked hasTitle = true;
+  @tracked articleElement;
 
   constructor() {
     super(...arguments);
@@ -25,6 +26,37 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
   }
 
   @action
+  deleteArticle() {
+    const range = this.args.controller.rangeFactory.fromAroundNode(
+      this.articleElement
+    );
+    this.args.controller.selection.selectRange(range);
+    this.args.controller.executeCommand('delete-selection');
+  }
+
+  @action
+  moveUpArticle() {
+    this.args.controller.executeCommand(
+      'move-article',
+      this.args.controller,
+      this.besluitUri,
+      this.articleElement,
+      true
+    );
+  }
+
+  @action
+  moveDownArticle() {
+    this.args.controller.executeCommand(
+      'move-article',
+      this.args.controller,
+      this.besluitUri,
+      this.articleElement,
+      false
+    );
+  }
+
+  @action
   modelWrittenHandler() {
     const limitedDatastore = this.args.controller.datastore.limitToRange(
       this.args.controller.selection.lastRange,
@@ -35,6 +67,13 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
       .asQuads()
       .next().value;
     if (besluit) {
+      const articleSubjectNodes = limitedDatastore
+        .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
+        .asSubjectNodes()
+        .next().value;
+      if (articleSubjectNodes) {
+        this.articleElement = [...articleSubjectNodes.nodes][0];
+      }
       const hasTitle = Boolean(
         this.getTitle(besluit.subject.value, limitedDatastore)
       );
