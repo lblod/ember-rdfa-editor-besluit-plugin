@@ -1,4 +1,4 @@
-export default class InsertArticleCommand {
+export default class MoveArticleCommand {
   name = 'move-article';
 
   constructor(model) {
