@@ -33,9 +33,9 @@ export default class InsertArticleCommand {
       articleContainerNode.getMaxOffset(),
       articleContainerNode.getMaxOffset()
     );
-
+    const articleUri = `http://data.lblod.info/artikels/${uuid()}`;
     const articleHtml = `
-      <div property="eli:has_part" prefix="mobiliteit: https://data.vlaanderen.be/ns/mobiliteit#" typeof="besluit:Artikel" resource="http://data.lblod.info/artikels/${uuid()}">
+      <div property="eli:has_part" prefix="mobiliteit: https://data.vlaanderen.be/ns/mobiliteit#" typeof="besluit:Artikel" resource="${articleUri}">
         <div>
           Artikel 
           <span property="eli:number" datatype="xsd:string"> 
@@ -56,6 +56,19 @@ export default class InsertArticleCommand {
       </div>
     `;
     controller.executeCommand('insert-html', articleHtml, range);
+    const newArticleElementSubjectNodes = controller.datastore
+      .match(`>${articleUri}`, null, null)
+      .asSubjectNodes()
+      .next().value;
+    if (newArticleElementSubjectNodes) {
+      const newArticleElement = [...newArticleElementSubjectNodes.nodes][0];
+      const range = controller.rangeFactory.fromInElement(
+        newArticleElement,
+        0,
+        0
+      );
+      controller.selection.selectRange(range);
+    }
   }
   generateArticleNumber(controller) {
     const numberQuads = [

@@ -10,7 +10,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
   constructor() {
     super(...arguments);
     this.args.controller.onEvent(
-      'contentChanged',
+      'selectionChanged',
       this.modelWrittenHandler.bind(this)
     );
   }
