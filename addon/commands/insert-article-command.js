@@ -67,7 +67,9 @@ export default class InsertArticleCommand {
         0,
         0
       );
-      controller.selection.selectRange(range);
+      this.model.change(() => {
+        controller.selection.selectRange(range);
+      });
     }
   }
   generateArticleNumber(controller) {

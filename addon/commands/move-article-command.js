@@ -33,24 +33,28 @@ export default class MoveArticleCommand {
           const temporalVariable = articles[articleIndex - 1];
           articles[articleIndex - 1] = articles[articleIndex];
           articles[articleIndex] = temporalVariable;
-          this.replaceArticles(
-            controller,
-            articleContainerElement,
-            articles,
-            articleElement
-          );
+          this.model.change(() => {
+            this.replaceArticles(
+              controller,
+              articleContainerElement,
+              articles,
+              articleElement
+            );
+          });
         }
       } else {
         if (articleIndex < articles.length - 1) {
           const temporalVariable = articles[articleIndex + 1];
           articles[articleIndex + 1] = articles[articleIndex];
           articles[articleIndex] = temporalVariable;
-          this.replaceArticles(
-            controller,
-            articleContainerElement,
-            articles,
-            articleElement
-          );
+          this.model.change(() => {
+            this.replaceArticles(
+              controller,
+              articleContainerElement,
+              articles,
+              articleElement
+            );
+          });
         }
       }
     }
