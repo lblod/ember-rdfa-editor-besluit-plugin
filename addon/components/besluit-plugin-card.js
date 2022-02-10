@@ -71,6 +71,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
         .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
         .asSubjectNodes()
         .next().value;
+      this.articleElement = undefined;
       if (articleSubjectNodes) {
         this.articleElement = [...articleSubjectNodes.nodes][0];
       }
