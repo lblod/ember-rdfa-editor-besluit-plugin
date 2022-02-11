@@ -1,4 +1,13 @@
 
+
+## 0.1.4 (2022-02-11)
+
+#### :rocket: Enhancement
+* [#5](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/5) Made new icons for the new actions ([@lagartoverde](https://github.com/lagartoverde))
+
+#### Committers: 1
+- Oscar Rodriguez Villalobos ([@lagartoverde](https://github.com/lagartoverde))
+
 ## 0.1.3 (2022-02-11)
 
 #### :rocket: Enhancement
