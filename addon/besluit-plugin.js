@@ -1,5 +1,6 @@
 import InsertArticleCommand from './commands/insert-article-command';
 import InsertTitleCommand from './commands/insert-title-command';
+import MoveArticleCommand from './commands/move-article-command';
 /**
  * Entry point for BesluitPlugin
  *
@@ -36,6 +37,9 @@ export default class BesluitPlugin {
     );
     controller.registerCommand(
       new InsertTitleCommand(controller._rawEditor._model)
+    );
+    controller.registerCommand(
+      new MoveArticleCommand(controller._rawEditor._model)
     );
     controller.registerWidget({
       componentName: 'besluit-plugin-card',

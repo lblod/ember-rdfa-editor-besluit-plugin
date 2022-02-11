@@ -15,6 +15,20 @@
       <AuButton {{on "click" this.insertArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
         Voeg artikel in
       </AuButton>
+      {{#if this.articleElement}}
+        <br />
+        <AuButton {{on 'click' this.deleteArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+          Artikel verwijderen
+        </AuButton>
+        <br />
+        <AuButton {{on 'click' this.moveUpArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+          Artikel naar boven verplaatsen
+        </AuButton>
+        <br />
+        <AuButton {{on 'click' this.moveDownArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+          Artikel naar beneden verplaatsen
+        </AuButton>
+      {{/if}}
     </c.content>
   </AuCard>
 {{/if}}
