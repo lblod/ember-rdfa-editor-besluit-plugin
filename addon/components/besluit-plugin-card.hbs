@@ -17,15 +17,15 @@
       </AuButton>
       {{#if this.articleElement}}
         <br />
-        <AuButton {{on 'click' this.deleteArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+        <AuButton {{on 'click' this.deleteArticle}} @icon="bin" @iconAlignment="left" @skin="link-secondary">
           Artikel verwijderen
         </AuButton>
         <br />
-        <AuButton {{on 'click' this.moveUpArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+        <AuButton {{on 'click' this.moveUpArticle}} @icon="nav-up" @iconAlignment="left" @skin="link-secondary">
           Artikel naar boven verplaatsen
         </AuButton>
         <br />
-        <AuButton {{on 'click' this.moveDownArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+        <AuButton {{on 'click' this.moveDownArticle}} @icon="nav-down" @iconAlignment="left" @skin="link-secondary">
           Artikel naar beneden verplaatsen
         </AuButton>
       {{/if}}
