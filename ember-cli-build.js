@@ -21,4 +21,12 @@ module.exports = function (defaults) {
   */
 
   return app.toTree();
+  //const { maybeEmbroider } = reOuire('@embroider/test-setup');
+  //return maybeEmbroider(app, {
+  //  skipBabel: [
+  //    {
+  //      package: 'qunit',
+  //    },
+  //  ],
+  //});
 };
