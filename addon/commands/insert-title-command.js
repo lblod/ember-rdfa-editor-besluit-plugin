@@ -16,9 +16,9 @@ export default class InsertTitleCommand {
     );
     const besluit = limitedDatastore
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Besluit')
-      .asSubjectNodes()
-      .next().value;
-    const besluitNode = [...besluit.nodes][0];
+      .asSubjectNodeMapping()
+      .single();
+    const besluitNode = besluit.nodes[0];
     const range = controller.rangeFactory.fromInNode(besluitNode, 0, 0);
 
     const articleHtml = `
@@ -29,5 +29,18 @@ export default class InsertTitleCommand {
       }</h4>
     `;
     controller.executeCommand('insert-html', articleHtml, range);
+    controller.selection.selectRange(
+      controller.selection.lastRange.shrinkToVisible()
+    );
+    //TODO: this is a hack, see https://binnenland.atlassian.net/browse/GN-3302
+    const containedNodes =
+      controller.selection.lastRange.contextNodes('rangeContains');
+    // the second node is the span, this depends on the exact html inserted above
+    containedNodes.next();
+    const span = containedNodes.next().value;
+    const finalRange = controller.rangeFactory.fromInNode(span);
+    controller.selection.selectRange(finalRange);
+
+    this.model.writeSelection();
   }
 }

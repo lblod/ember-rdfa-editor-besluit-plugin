@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { getTitleForDecision } from '../utils/get-title-for-decision';
 
 export default class EditorPluginsTemplateVariableCardComponent extends Component {
   @tracked showCard = false;
@@ -11,7 +12,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
     super(...arguments);
     this.args.controller.onEvent(
       'selectionChanged',
-      this.modelWrittenHandler.bind(this)
+      this.selectionChangedHandler
     );
   }
 
@@ -57,7 +58,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
   }
 
   @action
-  modelWrittenHandler() {
+  selectionChangedHandler() {
     this.articleElement = undefined;
     const limitedDatastore = this.args.controller.datastore.limitToRange(
       this.args.controller.selection.lastRange,
@@ -75,30 +76,17 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
       if (articleSubjectNodes) {
         this.articleElement = [...articleSubjectNodes.nodes][0];
       }
-      const hasTitle = Boolean(
-        this.getTitle(besluit.subject.value, this.args.controller.datastore)
+      this.hasTitle = Boolean(
+        getTitleForDecision(
+          besluit.subject.value,
+          this.args.controller.datastore
+        )
       );
-      this.hasTitle = hasTitle;
       this.showCard = true;
       this.besluitUri = besluit.subject.value;
     } else {
       this.showCard = false;
       this.hasTitle = true;
-    }
-  }
-  getTitle(besluitUri, limitedDatastore) {
-    const title = limitedDatastore
-      .match(
-        `>${besluitUri}`,
-        '>http://data.europa.eu/eli/ontology#title',
-        null
-      )
-      .asQuads()
-      .next().value;
-    if (title && title.object && title.object.value) {
-      return title.object.value;
-    } else {
-      return;
     }
   }
 }
