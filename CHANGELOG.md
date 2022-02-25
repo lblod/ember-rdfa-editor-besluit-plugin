@@ -1,5 +1,20 @@
 
 
+
+## 0.2.0 (2022-02-25)
+
+#### :rocket: Enhancement
+* [#9](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/9) Make sure the selection after inserting title is inside the title ([@abeforgit](https://github.com/abeforgit))
+* [#7](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/7) Ember upgrade v3.28 ([@benjay10](https://github.com/benjay10))
+
+#### :house: Internal
+* [#8](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/8) chore/bump editor 0.50.0 ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 2
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+- Ben ([@benjay10](https://github.com/benjay10))
+
+
 ## 0.1.4 (2022-02-11)
 
 #### :rocket: Enhancement
