@@ -76,7 +76,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
         this.articleElement = [...articleSubjectNodes.nodes][0];
       }
       const hasTitle = Boolean(
-        this.getTitle(besluit.subject.value, limitedDatastore)
+        this.getTitle(besluit.subject.value, this.args.controller.datastore)
       );
       this.hasTitle = hasTitle;
       this.showCard = true;
