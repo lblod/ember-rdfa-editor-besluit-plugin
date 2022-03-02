@@ -71,7 +71,8 @@ export default class MoveArticleCommand {
       articleContainerElement.getMaxOffset()
     );
     const articleHtml = articles.reduce(
-      (html, article) => (html += article.boundNode.outerHTML),
+      (html, article, index) =>
+        (html += this.generateArticleHtml(article, index)),
       ''
     );
     controller.executeCommand('insert-html', articleHtml, range);
@@ -89,5 +90,24 @@ export default class MoveArticleCommand {
       );
       controller.selection.selectRange(range);
     }
+  }
+  generateArticleHtml(article, index) {
+    console.log(article);
+    console.log(article.children)
+    let articleValue;
+    for (let child of article.children) {
+      console.log(child)
+      console.log(child.getAttribute('property'))
+      if (child.getAttribute('property') === 'prov:value') {
+        articleValue = child;
+      }
+    }
+    return `
+      <div property="eli:has_part" resource="${article.getAttribute('resource')}" typeof="besluit:Artikel">
+        <div>Artikel <span property="eli:number" datatype="xsd:string">${index + 1}</span></div>
+        <span style="display:none;" property="eli:language" resource="http://publications.europa.eu/resource/authority/language/NLD" typeof="skos:Concept">&nbsp;</span>
+        ${articleValue.boundNode.outerHTML}
+      </div>
+    `;
   }
 }
