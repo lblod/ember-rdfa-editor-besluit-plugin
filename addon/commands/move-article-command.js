@@ -70,6 +70,8 @@ export default class MoveArticleCommand {
       0,
       articleContainerElement.getMaxOffset()
     );
+    // Using the generate article html function instead of the insert article command to
+    // keep everything in a single insertion to the dom
     const articleHtml = articles.reduce(
       (html, article, index) =>
         (html += this.generateArticleHtml(article, index)),
