@@ -1,6 +1,14 @@
 
 
 
+## 0.2.1 (2022-03-10)
+
+#### :rocket: Enhancement
+* [#10](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/10) Renumber the articles when the order changes ([@lagartoverde](https://github.com/lagartoverde))
+
+#### Committers: 1
+- Oscar Rodriguez Villalobos ([@lagartoverde](https://github.com/lagartoverde))
+
 ## 0.2.0 (2022-02-25)
 
 #### :rocket: Enhancement
