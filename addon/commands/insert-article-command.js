@@ -46,7 +46,7 @@ export default class InsertArticleCommand {
             }
           </span></div>
         <span style="display:none;" property="eli:language" resource="http://publications.europa.eu/resource/authority/language/NLD" typeof="skos:Concept">&nbsp;</span>
-        <div propert="prov:value" datatype="xsd:string">
+        <div property="prov:value" datatype="xsd:string">
         ${
           articleContent
             ? articleContent
