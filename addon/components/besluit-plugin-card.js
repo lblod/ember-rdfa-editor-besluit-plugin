@@ -33,6 +33,11 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
     );
     this.args.controller.selection.selectRange(range);
     this.args.controller.executeCommand('delete-selection');
+    this.args.controller.executeCommand(
+      'recalculate-article-numbers',
+      this.args.controller,
+      this.besluitUri
+    );
   }
 
   @action
