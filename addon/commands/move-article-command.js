@@ -33,27 +33,26 @@ export default class MoveArticleCommand {
       const articleA = articles[articleIndex];
       const bIndex = moveUp ? articleIndex - 1 : articleIndex + 1;
       const articleB = articles[bIndex];
+
+      const articleARange = controller.rangeFactory.fromAroundNode(articleA);
+      const articleBRange = controller.rangeFactory.fromAroundNode(articleB);
+      const articleAToInsert = articleA.clone();
+      const articleBToInsert = articleB.clone();
+      this.model.change((mutator) => {
+        mutator.insertNodes(articleBRange, articleAToInsert);
+        mutator.insertNodes(articleARange, articleBToInsert);
+      });
+      controller.executeCommand(
+        'recalculate-article-numbers',
+        controller,
+        besluitUri
+      );
       this.model.change(() => {
-        const articleARange = controller.rangeFactory.fromAroundNode(articleA);
-        const articleBRange = controller.rangeFactory.fromAroundNode(articleB);
-        console.log(articleB.boundNode.outerHTML);
-        console.log(articleA.boundNode.outerHTML);
-        controller.executeCommand(
-          'insert-html',
-          articleA.boundNode.outerHTML,
-          articleBRange
+        const range = controller.rangeFactory.fromInElement(
+          articleAToInsert,
+          0,
+          0
         );
-        controller.executeCommand(
-          'insert-html',
-          articleB.boundNode.outerHTML,
-          articleARange
-        );
-        controller.executeCommand(
-          'recalculate-article-numbers',
-          controller,
-          besluitUri
-        );
-        const range = controller.rangeFactory.fromInElement(articleB, 0, 0);
         controller.selection.selectRange(range);
       });
     }

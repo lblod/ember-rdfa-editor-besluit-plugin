@@ -18,11 +18,11 @@ export default class RecalculateArticleNumbersCommand {
         null
       )*/
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
-      .asSubjectNodes();
-    const articlesArray = [...articles];
-    console.log(articlesArray);
+      .asPredicateNodes()
+      .next().value;
+    const articlesArray = [...articles.nodes];
     for (let i = 0; i < articlesArray.length; i++) {
-      const article = [...articlesArray[i].nodes][0];
+      const article = articlesArray[i];
       this.replaceNumberIfNeeded(controller, article, i);
     }
   }
@@ -36,15 +36,9 @@ export default class RecalculateArticleNumbersCommand {
       .asObjectNodes()
       .next().value;
     const articleNumber = Number(articleNumberObjectNode.object.value);
-    console.log(articleNumberObjectNode.nodes);
     const articleNumberElement = [...articleNumberObjectNode.nodes][0];
     const articleNumberExpected = index + 1;
     if (articleNumber !== articleNumberExpected) {
-      console.log(article.getAttribute('resource'))
-      console.log(articleNumber);
-      console.log(articleNumberExpected);
-      console.log('replacing article numbers')
-      console.log(articleNumberElement);
       controller.executeCommand(
         'insert-text',
         String(articleNumberExpected),
