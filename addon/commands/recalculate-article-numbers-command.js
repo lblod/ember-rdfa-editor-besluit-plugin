@@ -10,13 +10,16 @@ export default class RecalculateArticleNumbersCommand {
   }
 
   execute(controller, besluitUri) {
-    //TODO: make the query compatible with multiple besluits
+    const besluitSubjectNodes = controller.datastore
+      .match(`>${besluitUri}`, null, null)
+      .asSubjectNodes()
+      .next().value;
+    const besluit = [...besluitSubjectNodes.nodes][0];
     const articles = controller.datastore
-      /*.match(
-        `>${besluitUri}`,
-        '>http://data.europa.eu/eli/ontology#has_part',
-        null
-      )*/
+      .limitToRange(
+        controller.rangeFactory.fromAroundNode(besluit),
+        'rangeContains'
+      )
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
       .asPredicateNodes()
       .next().value;
