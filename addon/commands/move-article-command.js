@@ -28,88 +28,33 @@ export default class MoveArticleCommand {
       const articleIndex = articles.findIndex(
         (article) => article === articleElement
       );
-      if (moveUp) {
-        if (articleIndex > 0) {
-          const temporalVariable = articles[articleIndex - 1];
-          articles[articleIndex - 1] = articles[articleIndex];
-          articles[articleIndex] = temporalVariable;
-          this.model.change(() => {
-            this.replaceArticles(
-              controller,
-              articleContainerElement,
-              articles,
-              articleElement
-            );
-          });
-        }
-      } else {
-        if (articleIndex < articles.length - 1) {
-          const temporalVariable = articles[articleIndex + 1];
-          articles[articleIndex + 1] = articles[articleIndex];
-          articles[articleIndex] = temporalVariable;
-          this.model.change(() => {
-            this.replaceArticles(
-              controller,
-              articleContainerElement,
-              articles,
-              articleElement
-            );
-          });
-        }
-      }
-    }
-  }
-  replaceArticles(
-    controller,
-    articleContainerElement,
-    articles,
-    articleElement
-  ) {
-    const range = controller.rangeFactory.fromInNode(
-      articleContainerElement,
-      0,
-      articleContainerElement.getMaxOffset()
-    );
-    // Using the generate article html function instead of the insert article command to
-    // keep everything in a single insertion to the dom
-    const articleHtml = articles.reduce(
-      (html, article, index) =>
-        (html += this.generateArticleHtml(article, index)),
-      ''
-    );
-    controller.executeCommand('insert-html', articleHtml, range);
-    const articleUri = articleElement.getAttribute('resource');
-    const newArticleElementSubjectNodes = controller.datastore
-      .match(`>${articleUri}`, null, null)
-      .asSubjectNodes()
-      .next().value;
-    if (newArticleElementSubjectNodes) {
-      const newArticleElement = [...newArticleElementSubjectNodes.nodes][0];
-      const range = controller.rangeFactory.fromInElement(
-        newArticleElement,
-        0,
-        0
+      if (moveUp && articleIndex <= 0) return;
+      if (!moveUp && articleIndex >= articles.length - 1) return;
+      const articleA = articles[articleIndex];
+      const bIndex = moveUp ? articleIndex - 1 : articleIndex + 1;
+      const articleB = articles[bIndex];
+
+      const articleARange = controller.rangeFactory.fromAroundNode(articleA);
+      const articleBRange = controller.rangeFactory.fromAroundNode(articleB);
+      const articleAToInsert = articleA.clone();
+      const articleBToInsert = articleB.clone();
+      this.model.change((mutator) => {
+        mutator.insertNodes(articleBRange, articleAToInsert);
+        mutator.insertNodes(articleARange, articleBToInsert);
+      });
+      controller.executeCommand(
+        'recalculate-article-numbers',
+        controller,
+        besluitUri
       );
-      controller.selection.selectRange(range);
+      this.model.change(() => {
+        const range = controller.rangeFactory.fromInElement(
+          articleAToInsert,
+          0,
+          0
+        );
+        controller.selection.selectRange(range);
+      });
     }
-  }
-  generateArticleHtml(article, index) {
-    let articleValue;
-    for (let child of article.children) {
-      if (child.getAttribute('property') === 'prov:value') {
-        articleValue = child;
-      }
-    }
-    return `
-      <div property="eli:has_part" resource="${article.getAttribute(
-        'resource'
-      )}" typeof="besluit:Artikel">
-        <div>Artikel <span property="eli:number" datatype="xsd:string">${
-          index + 1
-        }</span></div>
-        <span style="display:none;" property="eli:language" resource="http://publications.europa.eu/resource/authority/language/NLD" typeof="skos:Concept">&nbsp;</span>
-        ${articleValue.boundNode.outerHTML}
-      </div>
-    `;
   }
 }
