@@ -1,6 +1,15 @@
 
 
 
+
+## 0.3.0 (2022-04-07)
+
+#### :rocket: Enhancement
+* [#11](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/11) Feature/improve delete and moving commands ([@lagartoverde](https://github.com/lagartoverde))
+
+#### Committers: 1
+- Oscar Rodriguez Villalobos ([@lagartoverde](https://github.com/lagartoverde))
+
 ## 0.2.1 (2022-03-10)
 
 #### :rocket: Enhancement
