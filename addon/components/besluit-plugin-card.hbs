@@ -6,30 +6,37 @@
       </AuHeading>
     </c.header>
     <c.content>
+      <AuList @divider={{true}} class="au-u-margin-none">
       {{#unless this.hasTitle}}
-        <AuButton {{on 'click' this.insertTitle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
-          Voeg titel in
-        </AuButton>
-         <br />
+        <AuList::Item>
+          <AuButton {{on 'click' this.insertTitle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+            Voeg titel in
+          </AuButton>
+        </AuList::Item>
       {{/unless}}
-      <AuButton {{on "click" this.insertArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
-        Voeg artikel in
-      </AuButton>
+      <AuList::Item>
+        <AuButton {{on "click" this.insertArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
+          Voeg artikel in
+        </AuButton>
+      </AuList::Item>
       {{#if this.articleElement}}
-        <br />
-        <AuButton {{on 'click' this.deleteArticle}} @icon="bin" @iconAlignment="left" @skin="link-secondary">
-          Artikel verwijderen
-        </AuButton>
-        <br />
-        <AuButton {{on 'click' this.moveUpArticle}} @icon="nav-up" @iconAlignment="left" @skin="link-secondary">
-          Artikel naar boven verplaatsen
-        </AuButton>
-        <br />
-        <AuButton {{on 'click' this.moveDownArticle}} @icon="nav-down" @iconAlignment="left" @skin="link-secondary">
-          Artikel naar beneden verplaatsen
-        </AuButton>
+        <AuList::Item>
+          <AuButton {{on 'click' this.deleteArticle}} @icon="bin" @iconAlignment="left" @skin="link-secondary">
+            Artikel verwijderen
+          </AuButton>
+        </AuList::Item>
+        <AuList::Item>
+          <AuButton {{on 'click' this.moveUpArticle}} @icon="nav-up" @iconAlignment="left" @skin="link-secondary">
+            Artikel naar boven verplaatsen
+          </AuButton>
+        </AuList::Item>
+        <AuList::Item>
+          <AuButton {{on 'click' this.moveDownArticle}} @icon="nav-down" @iconAlignment="left" @skin="link-secondary">
+            Artikel naar beneden verplaatsen
+          </AuButton>
+        </AuList::Item>
       {{/if}}
+      </AuList>
     </c.content>
   </AuCard>
 {{/if}}
-
