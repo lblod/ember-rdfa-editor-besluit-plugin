@@ -1,0 +1,44 @@
+{{#if this.articleElement}}
+  <AuCard
+    @flex={{true}}
+    @divided={{true}}
+    @expandable={{true}}
+    @shadow={{true}}
+    @isOpenInitially={{true}}
+    @size="small" as |c|>
+    <c.header>
+      <AuHeading @level="3" @skin="6">
+        {{t "card.title"}}
+      </AuHeading>
+    </c.header>
+    <c.content>
+      <div>
+        <AuButton
+          @icon="bin"
+          @iconAlignment="left"
+          @skin="link"
+          {{on 'click' this.deleteArticle}}>
+          {{t "action.delete-article"}}
+        </AuButton>
+      </div>
+      <div>
+        <AuButton
+          @icon="nav-up"
+          @iconAlignment="left"
+          @skin="link"
+          {{on 'click' this.moveUpArticle}}>
+          {{t "action.article-up"}}
+        </AuButton>
+      </div>
+      <div>
+        <AuButton
+          @icon="nav-down"
+          @iconAlignment="left"
+          @skin="link"
+          {{on 'click' this.moveDownArticle}}>
+          {{t "action.article-down"}}
+        </AuButton>
+      </div>
+    </c.content>
+  </AuCard>
+{{/if}}
