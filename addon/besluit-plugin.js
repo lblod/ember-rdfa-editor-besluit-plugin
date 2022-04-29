@@ -48,6 +48,11 @@ export default class BesluitPlugin {
     controller.registerWidget({
       componentName: 'besluit-plugin-card',
       identifier: 'besluit-plugin/card',
+      desiredLocation: 'insertSidebar',
+    });
+    controller.registerWidget({
+      componentName: 'besluit-context-card',
+      identifier: 'besluit-context-plugin/card',
       desiredLocation: 'sidebar',
     });
   }
