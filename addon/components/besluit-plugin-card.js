@@ -5,6 +5,7 @@ import { getTitleForDecision } from '../utils/get-title-for-decision';
 
 export default class EditorPluginsTemplateVariableCardComponent extends Component {
   @tracked hasTitle = true;
+  @tracked disableArticleInsert = true;
 
   constructor() {
     super(...arguments);
@@ -35,6 +36,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
       .asQuads()
       .next().value;
     if (besluit) {
+      this.disableArticleInsert = false;
       this.hasTitle = Boolean(
         getTitleForDecision(
           besluit.subject.value,
@@ -43,6 +45,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
       );
       this.besluitUri = besluit.subject.value;
     } else {
+      this.disableArticleInsert = true;
       this.hasTitle = true;
     }
   }
