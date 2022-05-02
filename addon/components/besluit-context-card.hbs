@@ -1,44 +1,42 @@
 {{#if this.articleElement}}
   <AuCard
-    @flex={{true}}
-    @divided={{true}}
-    @expandable={{true}}
     @shadow={{true}}
-    @isOpenInitially={{true}}
-    @size="small" as |c|>
-    <c.header>
+    @size="flush" as |c|>
+    <c.header class="au-u-hidden-visually">
       <AuHeading @level="3" @skin="6">
         {{t "card.title"}}
       </AuHeading>
     </c.header>
-    <c.content>
-      <div>
-        <AuButton
-          @icon="bin"
-          @iconAlignment="left"
-          @skin="link"
-          {{on 'click' this.deleteArticle}}>
-          {{t "action.delete-article"}}
-        </AuButton>
-      </div>
-      <div>
-        <AuButton
-          @icon="nav-up"
-          @iconAlignment="left"
-          @skin="link"
-          {{on 'click' this.moveUpArticle}}>
-          {{t "action.article-up"}}
-        </AuButton>
-      </div>
-      <div>
-        <AuButton
-          @icon="nav-down"
-          @iconAlignment="left"
-          @skin="link"
-          {{on 'click' this.moveDownArticle}}>
-          {{t "action.article-down"}}
-        </AuButton>
-      </div>
+    <c.content class="au-c-content--small">
+      <AuList @divider={{true}} class="au-u-padding-top-tiny au-u-padding-bottom-tiny">
+        <AuList::Item>
+          <AuButton
+            @icon="bin"
+            @iconAlignment="left"
+            @skin="link"
+            {{on 'click' this.deleteArticle}}>
+            {{t "action.delete-article"}}
+          </AuButton>
+        </AuList::Item>
+        <AuList::Item>
+          <AuButton
+            @icon="nav-up"
+            @iconAlignment="left"
+            @skin="link"
+            {{on 'click' this.moveUpArticle}}>
+            {{t "action.article-up"}}
+          </AuButton>
+        </AuList::Item>
+        <AuList::Item>
+          <AuButton
+            @icon="nav-down"
+            @iconAlignment="left"
+            @skin="link"
+            {{on 'click' this.moveDownArticle}}>
+            {{t "action.article-down"}}
+          </AuButton>
+        </AuList::Item>
+      </AuList>
     </c.content>
   </AuCard>
 {{/if}}
