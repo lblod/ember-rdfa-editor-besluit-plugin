@@ -4,9 +4,8 @@ import { action } from '@ember/object';
 import { getTitleForDecision } from '../utils/get-title-for-decision';
 
 export default class EditorPluginsTemplateVariableCardComponent extends Component {
-  @tracked showCard = false;
   @tracked hasTitle = true;
-  @tracked articleElement;
+  @tracked disableArticleInsert = true;
 
   constructor() {
     super(...arguments);
@@ -27,44 +26,7 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
   }
 
   @action
-  deleteArticle() {
-    const range = this.args.controller.rangeFactory.fromAroundNode(
-      this.articleElement
-    );
-    this.args.controller.selection.selectRange(range);
-    this.args.controller.executeCommand('delete-selection');
-    this.args.controller.executeCommand(
-      'recalculate-article-numbers',
-      this.args.controller,
-      this.besluitUri
-    );
-  }
-
-  @action
-  moveUpArticle() {
-    this.args.controller.executeCommand(
-      'move-article',
-      this.args.controller,
-      this.besluitUri,
-      this.articleElement,
-      true
-    );
-  }
-
-  @action
-  moveDownArticle() {
-    this.args.controller.executeCommand(
-      'move-article',
-      this.args.controller,
-      this.besluitUri,
-      this.articleElement,
-      false
-    );
-  }
-
-  @action
   selectionChangedHandler() {
-    this.articleElement = undefined;
     const limitedDatastore = this.args.controller.datastore.limitToRange(
       this.args.controller.selection.lastRange,
       'rangeIsInside'
@@ -74,23 +36,16 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
       .asQuads()
       .next().value;
     if (besluit) {
-      const articleSubjectNodes = limitedDatastore
-        .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
-        .asSubjectNodes()
-        .next().value;
-      if (articleSubjectNodes) {
-        this.articleElement = [...articleSubjectNodes.nodes][0];
-      }
+      this.disableArticleInsert = false;
       this.hasTitle = Boolean(
         getTitleForDecision(
           besluit.subject.value,
           this.args.controller.datastore
         )
       );
-      this.showCard = true;
       this.besluitUri = besluit.subject.value;
     } else {
-      this.showCard = false;
+      this.disableArticleInsert = true;
       this.hasTitle = true;
     }
   }

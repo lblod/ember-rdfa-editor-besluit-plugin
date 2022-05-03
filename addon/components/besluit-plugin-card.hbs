@@ -1,35 +1,20 @@
-{{#if this.showCard}}
-  <AuCard @flex={{true}} @divided={{true}} @expandable={{true}} @shadow={{true}} @isOpenInitially={{true}} @size="small" as |c|>
-    <c.header>
-      <AuHeading @level="3" @skin="6">
-        Besluit
-      </AuHeading>
-    </c.header>
-    <c.content>
-      {{#unless this.hasTitle}}
-        <AuButton {{on 'click' this.insertTitle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
-          Voeg titel in
-        </AuButton>
-         <br />
-      {{/unless}}
-      <AuButton {{on "click" this.insertArticle}} @icon="plus-text" @iconAlignment="left" @skin="link-secondary">
-        Voeg artikel in
-      </AuButton>
-      {{#if this.articleElement}}
-        <br />
-        <AuButton {{on 'click' this.deleteArticle}} @icon="bin" @iconAlignment="left" @skin="link-secondary">
-          Artikel verwijderen
-        </AuButton>
-        <br />
-        <AuButton {{on 'click' this.moveUpArticle}} @icon="nav-up" @iconAlignment="left" @skin="link-secondary">
-          Artikel naar boven verplaatsen
-        </AuButton>
-        <br />
-        <AuButton {{on 'click' this.moveDownArticle}} @icon="nav-down" @iconAlignment="left" @skin="link-secondary">
-          Artikel naar beneden verplaatsen
-        </AuButton>
-      {{/if}}
-    </c.content>
-  </AuCard>
-{{/if}}
-
+<AuList::Item>
+  <AuButton
+    @icon="add"
+    @iconAlignment="left"
+    @skin="link"
+    @disabled={{this.hasTitle}}
+    {{on 'click' this.insertTitle}}>
+    {{t "insert.decision-title"}}
+  </AuButton>
+</AuList::Item>
+<AuList::Item>
+  <AuButton
+    @icon="add"
+    @iconAlignment="left"
+    @skin="link"
+    @disabled={{this.disableArticleInsert}}
+    {{on "click" this.insertArticle}}>
+    {{t "insert.article"}}
+  </AuButton>
+</AuList::Item>

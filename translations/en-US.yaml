@@ -1,0 +1,11 @@
+card:
+  title: Edit decision
+
+insert:
+  article: Insert article
+  decision-title: Insert decision title
+
+action:
+  delete-article: Delete article
+  article-up: Move article up
+  article-down: Move article down

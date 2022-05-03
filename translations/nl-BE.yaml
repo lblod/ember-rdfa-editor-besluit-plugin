@@ -1,0 +1,11 @@
+card:
+  title: Artikels bewerken
+
+insert:
+  article: Voeg artikel in
+  decision-title: Voeg besluittitel in
+
+action:
+  delete-article: Artikel verwijderen
+  article-up: Artikel naar boven verplaatsen
+  article-down: Artikel naar beneden verplaatsen
