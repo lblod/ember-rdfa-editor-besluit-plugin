@@ -2,6 +2,14 @@
 
 
 
+## 0.4.0 (2022-05-05)
+
+#### :rocket: Enhancement
+* [#14](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/14) Feature / Widget redesign ([@benjay10](https://github.com/benjay10))
+
+#### Committers: 1
+- Ben ([@benjay10](https://github.com/benjay10))
+
 ## 0.3.0 (2022-04-07)
 
 #### :rocket: Enhancement
