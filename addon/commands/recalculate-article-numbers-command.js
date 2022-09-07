@@ -23,12 +23,15 @@ export default class RecalculateArticleNumbersCommand {
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
       .asPredicateNodes()
       .next().value;
-    const articlesArray = [...articles.nodes];
-    for (let i = 0; i < articlesArray.length; i++) {
-      const article = articlesArray[i];
-      this.replaceNumberIfNeeded(controller, article, i);
+    if (articles) {
+      const articlesArray = [...articles.nodes];
+      for (let i = 0; i < articlesArray.length; i++) {
+        const article = articlesArray[i];
+        this.replaceNumberIfNeeded(controller, article, i);
+      }
     }
   }
+
   replaceNumberIfNeeded(controller, article, index) {
     const articleNumberObjectNode = controller.datastore
       .match(

@@ -37,8 +37,8 @@ export default class InsertArticleCommand {
     const articleHtml = `
       <div property="eli:has_part" prefix="mobiliteit: https://data.vlaanderen.be/ns/mobiliteit#" typeof="besluit:Artikel" resource="${articleUri}">
         <div>
-          Artikel 
-          <span property="eli:number" datatype="xsd:string"> 
+          Artikel
+          <span property="eli:number" datatype="xsd:string">
             ${
               articleNumber
                 ? articleNumber
@@ -62,16 +62,18 @@ export default class InsertArticleCommand {
       .next().value;
     if (newArticleElementSubjectNodes) {
       const newArticleElement = [...newArticleElementSubjectNodes.nodes][0];
+      console.log(newArticleElement.toXml());
       const range = controller.rangeFactory.fromInElement(
         newArticleElement,
         0,
         0
       );
-      this.model.change(() => {
-        controller.selection.selectRange(range);
-      });
+      console.log('will select range');
+      this.model.selectRange(range);
+      this.model.writeSelection();
     }
   }
+
   generateArticleNumber(controller) {
     const numberQuads = [
       ...controller.datastore
@@ -91,6 +93,7 @@ export default class InsertArticleCommand {
       return '<span class="mark-highlight-manual">nummer</span>';
     }
   }
+
   removeZeroWidthSpace(text) {
     return text.replace(/[\u200B-\u200D\uFEFF]/g, '');
   }

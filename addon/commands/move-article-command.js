@@ -53,7 +53,7 @@ export default class MoveArticleCommand {
           0,
           0
         );
-        controller.selection.selectRange(range);
+        this.model.selectRange(range);
       });
     }
   }

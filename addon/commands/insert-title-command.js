@@ -39,7 +39,7 @@ export default class InsertTitleCommand {
     containedNodes.next();
     const span = containedNodes.next().value;
     const finalRange = controller.rangeFactory.fromInNode(span);
-    controller.selection.selectRange(finalRange);
+    this.model.selectRange(finalRange);
 
     this.model.writeSelection();
   }
