@@ -2,6 +2,35 @@
 
 
 
+
+## 0.5.0 (2022-09-07)
+
+#### :boom: Breaking Change
+* [#31](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/31) Bump editor to 0.63.1 ([@abeforgit](https://github.com/abeforgit))
+
+#### :bug: Bug Fix
+* [#32](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/32) Fix selection problems after inserting/moving ([@abeforgit](https://github.com/abeforgit))
+
+#### :house: Internal
+* [#34](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/34) Bump sass from 1.54.8 to 1.54.9 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#27](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/27) Bump ember-cli-autoprefixer from 1.0.3 to 2.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#28](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/28) Bump sass from 1.51.0 to 1.54.8 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#29](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/29) Bump prettier from 2.6.2 to 2.7.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#30](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/30) Bump qunit-dom from 1.6.0 to 2.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#22](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/22) Bump qunit from 2.18.2 to 2.19.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#21](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/21) Bump tar and ember-cli-update ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#25](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/25) Bump eslint-plugin-prettier from 3.4.1 to 4.2.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#20](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/20) Bump @codemirror/basic-setup from 0.19.3 to 0.20.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#19](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/19) Bump sass from 1.51.0 to 1.54.8 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#18](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/18) Bump ember-cli-htmlbars from 5.7.2 to 6.1.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#17](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/17) Bump ember-try from 1.4.0 to 2.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#16](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/16) Bump terser from 4.8.0 to 4.8.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#15](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/15) chore/bump-editor-v0.62.0 ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 0.4.0 (2022-05-05)
 
 #### :rocket: Enhancement
