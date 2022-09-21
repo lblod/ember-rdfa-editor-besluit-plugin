@@ -22,7 +22,6 @@ export default class InsertTitleCommand {
       }</h4>
     `;
     transaction.commands.insertHtml({ htmlString: articleHtml, range });
-    
     // Currently disable as insertHtml returns a collapsed selection which causes shrinkToVisible to fail
     // transaction.selectRange(
     //   transaction.currentSelection.lastRange.shrinkToVisible()
