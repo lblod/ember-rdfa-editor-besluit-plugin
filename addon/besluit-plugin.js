@@ -33,18 +33,15 @@ export default class BesluitPlugin {
 
   initialize(controller) {
     this.controller = controller;
-    controller.registerCommand(
-      new InsertArticleCommand(controller._rawEditor._model)
-    );
-    controller.registerCommand(
-      new InsertTitleCommand(controller._rawEditor._model)
-    );
-    controller.registerCommand(
-      new MoveArticleCommand(controller._rawEditor._model)
-    );
-    controller.registerCommand(
-      new RecalculateArticleNumbersCommand(controller._rawEditor._model)
-    );
+    this.controller.perform((tr) => {
+      tr.registerCommand('insertArticle', new InsertArticleCommand());
+      tr.registerCommand('insertTitle', new InsertTitleCommand());
+      tr.registerCommand('moveArticle', new MoveArticleCommand());
+      tr.registerCommand(
+        'recalculateArticleNumbers',
+        new RecalculateArticleNumbersCommand()
+      );
+    });
     controller.registerWidget({
       componentName: 'besluit-plugin-card',
       identifier: 'besluit-plugin/card',

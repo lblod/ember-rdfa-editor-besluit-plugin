@@ -7,46 +7,43 @@ export default class BesluitContextCardComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.args.controller.onEvent(
-      'selectionChanged',
-      this.selectionChangedHandler
+    this.args.controller.addTransactionStepListener(
+      this.onTransactionStepUpdate
     );
   }
 
   @action
   deleteArticle() {
-    const range = this.args.controller.rangeFactory.fromAroundNode(
-      this.articleElement
-    );
-    this.args.controller.selection.selectRange(range);
-    this.args.controller.executeCommand('delete-selection');
-    this.args.controller.executeCommand(
-      'recalculate-article-numbers',
-      this.args.controller,
-      this.besluitUri
-    );
+    this.args.controller.perform((tr) => {
+      const range = tr.rangeFactory.fromAroundNode(this.articleElement);
+      tr.selectRange(range);
+      tr.commands.deleteSelection({});
+      tr.commands.recalculateArticleNumbers({
+        besluitUri: this.besluitUri,
+      });
+    });
   }
 
   @action
   moveUpArticle() {
-    this.args.controller.executeCommand(
-      'move-article',
-      this.args.controller,
-      this.besluitUri,
-      this.articleElement,
-      true
-    );
+    this.args.controller.perform((tr) => {
+      tr.commands.moveArticle({
+        besluitUri: this.besluitUri,
+        articleElement: this.articleElement,
+        moveUp: true,
+      });
+    });
   }
 
   @action
   moveDownArticle() {
-    this.args.controller.executeCommand(
-      'move-article',
-      this.args.controller,
-      this.besluitUri,
-      this.articleElement,
-      false
-    );
+    this.args.controller.perform((tr) => {
+      tr.commands.moveArticle({
+        besluitUri: this.besluitUri,
+        articleElement: this.articleElement,
+        moveUp: false,
+      });
+    });
   }
 
   @action
@@ -69,6 +66,36 @@ export default class BesluitContextCardComponent extends Component {
         this.articleElement = [...articleSubjectNodes.nodes][0];
       }
       this.besluitUri = besluit.subject.value;
+    }
+  }
+
+  modifiesSelection(steps) {
+    return steps.some(
+      (step) => step.type === 'selection-step' || step.type === 'operation-step'
+    );
+  }
+
+  @action
+  onTransactionStepUpdate(transaction, steps) {
+    if (this.modifiesSelection(steps)) {
+      this.articleElement = undefined;
+      const limitedDatastore = transaction
+        .getCurrentDataStore()
+        .limitToRange(transaction.currentSelection.lastRange, 'rangeIsInside');
+      const besluit = limitedDatastore
+        .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Besluit')
+        .asQuads()
+        .next().value;
+      if (besluit) {
+        const articleSubjectNodes = limitedDatastore
+          .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
+          .asSubjectNodes()
+          .next().value;
+        if (articleSubjectNodes) {
+          this.articleElement = [...articleSubjectNodes.nodes][0];
+        }
+        this.besluitUri = besluit.subject.value;
+      }
     }
   }
 }

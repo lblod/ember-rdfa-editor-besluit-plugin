@@ -1,23 +1,19 @@
 export default class RecalculateArticleNumbersCommand {
-  name = 'recalculate-article-numbers';
-
-  constructor(model) {
-    this.model = model;
-  }
-
   canExecute() {
     return true;
   }
 
-  execute(controller, besluitUri) {
-    const besluitSubjectNodes = controller.datastore
+  execute({ transaction }, { besluitUri }) {
+    const besluitSubjectNodes = transaction
+      .getCurrentDataStore()
       .match(`>${besluitUri}`, null, null)
       .asSubjectNodes()
       .next().value;
     const besluit = [...besluitSubjectNodes.nodes][0];
-    const articles = controller.datastore
+    const articles = transaction
+      .getCurrentDataStore()
       .limitToRange(
-        controller.rangeFactory.fromAroundNode(besluit),
+        transaction.rangeFactory.fromAroundNode(besluit),
         'rangeContains'
       )
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Artikel')
@@ -27,13 +23,14 @@ export default class RecalculateArticleNumbersCommand {
       const articlesArray = [...articles.nodes];
       for (let i = 0; i < articlesArray.length; i++) {
         const article = articlesArray[i];
-        this.replaceNumberIfNeeded(controller, article, i);
+        this.replaceNumberIfNeeded(transaction, article, i);
       }
     }
   }
 
-  replaceNumberIfNeeded(controller, article, index) {
-    const articleNumberObjectNode = controller.datastore
+  replaceNumberIfNeeded(transaction, article, index) {
+    const articleNumberObjectNode = transaction
+      .getCurrentDataStore()
       .match(
         `>${article.getAttribute('resource')}`,
         '>http://data.europa.eu/eli/ontology#number',
@@ -45,15 +42,14 @@ export default class RecalculateArticleNumbersCommand {
     const articleNumberElement = [...articleNumberObjectNode.nodes][0];
     const articleNumberExpected = index + 1;
     if (articleNumber !== articleNumberExpected) {
-      controller.executeCommand(
-        'insert-text',
-        String(articleNumberExpected),
-        controller.rangeFactory.fromInNode(
+      transaction.commands.insertText({
+        text: String(articleNumberExpected),
+        range: transaction.rangeFactory.fromInNode(
           articleNumberElement,
           0,
           articleNumberElement.getMaxOffset()
-        )
-      );
+        ),
+      });
     }
   }
 }

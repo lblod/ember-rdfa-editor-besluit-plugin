@@ -1,21 +1,14 @@
 import { v4 as uuid } from 'uuid';
 
 export default class InsertArticleCommand {
-  name = 'insert-article';
-
-  constructor(model) {
-    this.model = model;
-  }
-
   canExecute() {
     return true;
   }
 
-  execute(controller, articleContent, articleNumber) {
-    const limitedDatastore = controller.datastore.limitToRange(
-      controller.selection.lastRange,
-      'rangeIsInside'
-    );
+  execute({ transaction }, { articleContent, articleNumber }) {
+    const limitedDatastore = transaction
+      .getCurrentDataStore()
+      .limitToRange(transaction.currentSelection.lastRange, 'rangeIsInside');
     const besluit = limitedDatastore
       .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Besluit')
       .asSubjectNodes()
@@ -28,7 +21,7 @@ export default class InsertArticleCommand {
         break;
       }
     }
-    const range = controller.rangeFactory.fromInNode(
+    const range = transaction.rangeFactory.fromInNode(
       articleContainerNode,
       articleContainerNode.getMaxOffset(),
       articleContainerNode.getMaxOffset()
@@ -42,7 +35,7 @@ export default class InsertArticleCommand {
             ${
               articleNumber
                 ? articleNumber
-                : this.generateArticleNumber(controller)
+                : this.generateArticleNumber(transaction)
             }
           </span></div>
         <span style="display:none;" property="eli:language" resource="http://publications.europa.eu/resource/authority/language/NLD" typeof="skos:Concept">&nbsp;</span>
@@ -55,28 +48,29 @@ export default class InsertArticleCommand {
         </div>
       </div>
     `;
-    controller.executeCommand('insert-html', articleHtml, range);
-    const newArticleElementSubjectNodes = controller.datastore
+    transaction.commands.insertHtml({ htmlString: articleHtml, range });
+    const newArticleElementSubjectNodes = transaction
+      .getCurrentDataStore()
       .match(`>${articleUri}`, null, null)
       .asSubjectNodes()
       .next().value;
     if (newArticleElementSubjectNodes) {
       const newArticleElement = [...newArticleElementSubjectNodes.nodes][0];
       console.log(newArticleElement.toXml());
-      const range = controller.rangeFactory.fromInElement(
+      const range = transaction.rangeFactory.fromInElement(
         newArticleElement,
         0,
         0
       );
       console.log('will select range');
-      this.model.selectRange(range);
-      this.model.writeSelection();
+      transaction.selectRange(range);
     }
   }
 
-  generateArticleNumber(controller) {
+  generateArticleNumber(transaction) {
     const numberQuads = [
-      ...controller.datastore
+      ...transaction
+        .getCurrentDataStore()
         .match(null, '>http://data.europa.eu/eli/ontology#number', null)
         .asQuads(),
     ];

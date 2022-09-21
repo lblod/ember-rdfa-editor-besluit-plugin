@@ -9,44 +9,54 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
 
   constructor() {
     super(...arguments);
-    this.args.controller.onEvent(
-      'selectionChanged',
-      this.selectionChangedHandler
+    this.args.controller.addTransactionStepListener(
+      this.onTransactionStepUpdate
     );
   }
 
   @action
   insertArticle() {
-    this.args.controller.executeCommand('insert-article', this.args.controller);
+    this.args.controller.perform((tr) => {
+      tr.commands.insertArticle({});
+    });
   }
 
   @action
   insertTitle() {
-    this.args.controller.executeCommand('insert-title', this.args.controller);
+    this.args.controller.perform((tr) => {
+      tr.commands.insertTitle({});
+    });
+  }
+
+  modifiesSelection(steps) {
+    return steps.some(
+      (step) => step.type === 'selection-step' || step.type === 'operation-step'
+    );
   }
 
   @action
-  selectionChangedHandler() {
-    const limitedDatastore = this.args.controller.datastore.limitToRange(
-      this.args.controller.selection.lastRange,
-      'rangeIsInside'
-    );
-    const besluit = limitedDatastore
-      .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Besluit')
-      .asQuads()
-      .next().value;
-    if (besluit) {
-      this.disableArticleInsert = false;
-      this.hasTitle = Boolean(
-        getTitleForDecision(
-          besluit.subject.value,
-          this.args.controller.datastore
-        )
-      );
-      this.besluitUri = besluit.subject.value;
-    } else {
-      this.disableArticleInsert = true;
-      this.hasTitle = true;
+  onTransactionStepUpdate(transaction, steps) {
+    if (this.modifiesSelection(steps)) {
+      const limitedDatastore = transaction
+        .getCurrentDataStore()
+        .limitToRange(transaction.currentSelection.lastRange, 'rangeIsInside');
+      const besluit = limitedDatastore
+        .match(null, 'a', '>http://data.vlaanderen.be/ns/besluit#Besluit')
+        .asQuads()
+        .next().value;
+      if (besluit) {
+        this.disableArticleInsert = false;
+        this.hasTitle = Boolean(
+          getTitleForDecision(
+            besluit.subject.value,
+            transaction.getCurrentDataStore()
+          )
+        );
+        this.besluitUri = besluit.subject.value;
+      } else {
+        this.disableArticleInsert = true;
+        this.hasTitle = true;
+      }
     }
   }
 }

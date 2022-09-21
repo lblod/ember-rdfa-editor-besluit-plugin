@@ -1,16 +1,11 @@
 export default class MoveArticleCommand {
-  name = 'move-article';
-
-  constructor(model) {
-    this.model = model;
-  }
-
   canExecute() {
     return true;
   }
 
-  execute(controller, besluitUri, articleElement, moveUp) {
-    const subjectNodes = controller.datastore
+  execute({ transaction }, { besluitUri, articleElement, moveUp }) {
+    const subjectNodes = transaction
+      .getCurrentDataStore()
       .match(`>${besluitUri}`, 'prov:value', null)
       .asSubjectNodes()
       .next().value;
@@ -34,27 +29,21 @@ export default class MoveArticleCommand {
       const bIndex = moveUp ? articleIndex - 1 : articleIndex + 1;
       const articleB = articles[bIndex];
 
-      const articleARange = controller.rangeFactory.fromAroundNode(articleA);
-      const articleBRange = controller.rangeFactory.fromAroundNode(articleB);
+      const articleARange = transaction.rangeFactory.fromAroundNode(articleA);
+      const articleBRange = transaction.rangeFactory.fromAroundNode(articleB);
       const articleAToInsert = articleA.clone();
       const articleBToInsert = articleB.clone();
-      this.model.change((mutator) => {
-        mutator.insertNodes(articleBRange, articleAToInsert);
-        mutator.insertNodes(articleARange, articleBToInsert);
-      });
-      controller.executeCommand(
-        'recalculate-article-numbers',
-        controller,
-        besluitUri
+
+      transaction.insertNodes(articleBRange, articleAToInsert);
+      transaction.insertNodes(articleARange, articleBToInsert);
+
+      transaction.commands.recalculateArticleNumbers({ besluitUri });
+      const range = transaction.rangeFactory.fromInElement(
+        articleAToInsert,
+        0,
+        0
       );
-      this.model.change(() => {
-        const range = controller.rangeFactory.fromInElement(
-          articleAToInsert,
-          0,
-          0
-        );
-        this.model.selectRange(range);
-      });
+      transaction.selectRange(range);
     }
   }
 }
