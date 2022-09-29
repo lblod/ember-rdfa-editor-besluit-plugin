@@ -4,6 +4,16 @@
 
 
 
+
+## 0.5.2 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#56](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/56) build(deps): support wider range of powerselect ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 0.5.1 (2022-09-29)
 
 #### :house: Internal
