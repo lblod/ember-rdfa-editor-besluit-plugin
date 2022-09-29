@@ -37,7 +37,7 @@
     "@appuniversum/ember-appuniversum": "^1.5.0",
     "@lblod/ember-rdfa-editor": ">=0.63.1",
     "ember-concurrency": "^2.2.0",
-    "ember-power-select": "^6.0.1"
+    "ember-power-select": ">= 5.x || >= 6.x"
   },
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "^1.5.0",
