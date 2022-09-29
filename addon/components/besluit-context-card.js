@@ -52,8 +52,12 @@ export default class BesluitContextCardComponent extends Component {
   @action
   selectionChangedHandler() {
     this.articleElement = undefined;
+    const selectedRange = this.args.controller.lastRange;
+    if (!selectedRange) {
+      return;
+    }
     const limitedDatastore = this.args.controller.datastore.limitToRange(
-      this.args.controller.selection.lastRange,
+      selectedRange,
       'rangeIsInside'
     );
     const besluit = limitedDatastore
