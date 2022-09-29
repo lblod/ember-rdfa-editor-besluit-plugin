@@ -7,6 +7,16 @@
 
 
 
+
+## 0.5.5 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#59](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/59) fix(selection-handler): handle more cases without lastRange ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 0.5.4 (2022-09-29)
 
 #### :bug: Bug Fix
