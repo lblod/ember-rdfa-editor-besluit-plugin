@@ -6,6 +6,16 @@
 
 
 
+
+## 0.5.4 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#58](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/58) build(deps): revert uuid back to 8.3.2 ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 0.5.3 (2022-09-29)
 
 #### :bug: Bug Fix

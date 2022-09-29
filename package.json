@@ -1,6 +1,6 @@
 {
   "name": "@lblod/ember-rdfa-editor-besluit-plugin",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
