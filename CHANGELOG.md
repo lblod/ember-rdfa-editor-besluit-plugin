@@ -5,6 +5,16 @@
 
 
 
+
+## 0.5.3 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#57](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/57) build(deps): widen accepted versions of uuid and remove glimmer from deps ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 0.5.2 (2022-09-29)
 
 #### :bug: Bug Fix
