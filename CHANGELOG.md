@@ -8,6 +8,17 @@
 
 
 
+
+## 0.5.6 (2022-10-06)
+
+#### :house: Internal
+* [#64](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/64) Add release-it packages ([@elpoelma](https://github.com/elpoelma))
+* [#61](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/61) build(deps-dev): bump @lblod/ember-rdfa-editor from 0.63.3 to 0.63.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#62](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/62) build(deps-dev): bump @appuniversum/ember-appuniversum from 1.7.0 to 1.8.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 0.5.5 (2022-09-29)
 
 #### :bug: Bug Fix
