@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { getTitleForDecision } from '../utils/get-title-for-decision';
 
-export default class EditorPluginsTemplateVariableCardComponent extends Component {
+export default class BesluitPluginCardComponent extends Component {
   @tracked hasTitle = true;
   @tracked disableArticleInsert = true;
 
@@ -36,7 +36,10 @@ export default class EditorPluginsTemplateVariableCardComponent extends Componen
 
   @action
   onTransactionStepUpdate(transaction, steps) {
-    if (this.modifiesSelection(steps)) {
+    if (
+      this.modifiesSelection(steps) &&
+      transaction.currentSelection.lastRange
+    ) {
       const limitedDatastore = transaction
         .getCurrentDataStore()
         .limitToRange(transaction.currentSelection.lastRange, 'rangeIsInside');

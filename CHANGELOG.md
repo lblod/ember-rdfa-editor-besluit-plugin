@@ -3,6 +3,68 @@
 
 
 
+
+
+
+
+
+## 0.5.5 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#59](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/59) fix(selection-handler): handle more cases without lastRange ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
+## 0.5.4 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#58](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/58) build(deps): revert uuid back to 8.3.2 ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
+## 0.5.3 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#57](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/57) build(deps): widen accepted versions of uuid and remove glimmer from deps ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
+## 0.5.2 (2022-09-29)
+
+#### :bug: Bug Fix
+* [#56](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/56) build(deps): support wider range of powerselect ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
+## 0.5.1 (2022-09-29)
+
+#### :house: Internal
+* [#54](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/54) Bump mout from 1.2.3 to 1.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#55](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/55) Bump sass from 1.54.9 to 1.55.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#53](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/53) Bump @appuniversum/ember-appuniversum from 1.5.0 to 1.7.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#52](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/52) Bump eslint from 7.32.0 to 8.24.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#50](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/50) Bump @lblod/ember-rdfa-editor from 0.63.1 to 0.63.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#48](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/48) Bump eslint-plugin-qunit from 6.2.0 to 7.3.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#47](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/47) Bump eslint-plugin-ember from 10.6.0 to 11.0.6 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#45](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/45) Bump uuid from 8.3.2 to 9.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#40](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/40) Bump ember-power-select from 5.0.4 to 6.0.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#42](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/42) Bump ember-concurrency from 2.2.1 to 2.3.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#43](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/43) Bump ember-cli-htmlbars from 6.1.0 to 6.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#44](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/44) Bump @ember/test-helpers from 2.7.0 to 2.8.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#37](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/37) Bump webpack from 5.72.0 to 5.74.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#39](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/39) Bump ember-cli-sass from 10.0.1 to 11.0.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#36](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/36) Bump ember-page-title from 6.2.2 to 7.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#35](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/35) Bump ember-auto-import from 2.4.1 to 2.4.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+
 ## 0.5.0 (2022-09-07)
 
 #### :boom: Breaking Change

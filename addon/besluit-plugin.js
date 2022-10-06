@@ -31,26 +31,30 @@ export default class BesluitPlugin {
     return 'besluit';
   }
 
-  initialize(controller) {
+  initialize(transaction, controller) {
     this.controller = controller;
-    this.controller.perform((tr) => {
-      tr.registerCommand('insertArticle', new InsertArticleCommand());
-      tr.registerCommand('insertTitle', new InsertTitleCommand());
-      tr.registerCommand('moveArticle', new MoveArticleCommand());
-      tr.registerCommand(
-        'recalculateArticleNumbers',
-        new RecalculateArticleNumbersCommand()
-      );
-    });
-    controller.registerWidget({
-      componentName: 'besluit-plugin-card',
-      identifier: 'besluit-plugin/card',
-      desiredLocation: 'insertSidebar',
-    });
-    controller.registerWidget({
-      componentName: 'besluit-context-card',
-      identifier: 'besluit-context-plugin/card',
-      desiredLocation: 'sidebar',
-    });
+    transaction.registerCommand('insertArticle', new InsertArticleCommand());
+    transaction.registerCommand('insertTitle', new InsertTitleCommand());
+    transaction.registerCommand('moveArticle', new MoveArticleCommand());
+    transaction.registerCommand(
+      'recalculateArticleNumbers',
+      new RecalculateArticleNumbersCommand()
+    );
+    transaction.registerWidget(
+      {
+        componentName: 'besluit-plugin-card',
+        identifier: 'besluit-plugin/card',
+        desiredLocation: 'insertSidebar',
+      },
+      controller
+    );
+    transaction.registerWidget(
+      {
+        componentName: 'besluit-context-card',
+        identifier: 'besluit-context-plugin/card',
+        desiredLocation: 'sidebar',
+      },
+      controller
+    );
   }
 }
