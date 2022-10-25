@@ -9,6 +9,15 @@
 
 
 
+
+## 0.5.7 (2022-10-25)
+
+#### :bug: Bug Fix
+* [#72](https://github.com/lblod/ember-rdfa-editor-besluit-plugin/pull/72) Hotfix: replace controller.lastRange by controller.selection.lastRange ([@elpoelma](https://github.com/elpoelma))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 0.5.6 (2022-10-06)
 
 #### :house: Internal
