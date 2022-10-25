@@ -52,7 +52,7 @@ export default class BesluitContextCardComponent extends Component {
   @action
   selectionChangedHandler() {
     this.articleElement = undefined;
-    const selectedRange = this.args.controller.lastRange;
+    const selectedRange = this.args.controller.selection.lastRange;
     if (!selectedRange) {
       return;
     }
